@@ -1,0 +1,20 @@
+---
+version: "2.1"
+services:
+  sql_server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: SQL-SERVER
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "MSSQL_PID=EXPRESS"     
+    volumes:
+      - ./sql/data:/var/opt/mssql/data
+      - ./sql/secrets:/var/opt/mssql/secrets
+    ports:
+      - 1433:1433/tcp
+      - 1434:1434/udp
+    restart: unless-stopped
+    env_file:
+      - secret.env
+    secrets:
+      - MSSQL_SA_PASSWORD 
