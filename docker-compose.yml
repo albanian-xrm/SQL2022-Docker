@@ -16,5 +16,3 @@ services:
     restart: unless-stopped
     env_file:
       - secret.env
-    secrets:
-      - MSSQL_SA_PASSWORD 
